@@ -4,44 +4,15 @@
 	<meta charset="utf-8" />
 	<title>AngularJS-filtre</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js">	</script>
-	<script >
-		angular.module("todo",[])
-		.controller("TodoController",function () {
-			var todoCtrl = this;
-			todoCtrl.tasks=[
-			{description :"un"},
-			{description :"deux"},
-			];
-
-			todoCtrl.addtask= function(desc){
-				todoCtrl.tasks.push({
-				description : desc})
-			};
-			todoCtrl.desc=true;
-			todoCtrl.tri = function(){
-				todoCtrl.desc =!todoCtrl.desc;
-			}
-
-		this.user1 = {name:"Pauline",email:"p.klein1@outlook.fr"}
-		this.user2 = {email:"p.klein1@outlook.fr"}
-		})
-
-		.filter("bang", function (){ //Création de filtre
-			return function (input,nb){
-               return input + ''+'!'.repeat(nb)
-			}
-		})
-		.filter("username",function(){
-			return function(input){
-				if (input && input.name) return input.name
-				if (input && input.email) return input.email
-					return "John Doe"
-		}
-	}
-			)
-	</script>
+<script src="app/todo.js"></script>
+<script src="app/controllers/TodoController.js"></script>
+<script src="app/filters/BangFilter.js"></script>
+<script src="app/filters/User.js"></script>
 </head>
 <body ng-app="todo">
+	<header>
+		<ng-include src="views/header.html"></ng-include>
+	</header>
 	<div ng-controller="TodoController as todoCtrl">
 		<input type="text" ng-model="nombre ">
 		<br>
@@ -63,5 +34,8 @@
  {{todoCtrl.user2|username}}===p.klein1@outlook.fr<br>
  {{todoCtrl.user3|username}}===John Doe<br>
 	</div>
+	<footer>
+		<ng-include src="views/footer.html"></ng-include>
+	</footer>
 </body>
 </html>
