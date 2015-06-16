@@ -22,46 +22,19 @@
 				todoCtrl.desc =!todoCtrl.desc;
 			}
 
-		this.user1 = {name:"Pauline",email:"p.klein1@outlook.fr"}
-		this.user2 = {email:"p.klein1@outlook.fr"}
 		})
-
-		.filter("bang", function (){ //Création de filtre
-			return function (input,nb){
-               return input + ''+'!'.repeat(nb)
-			}
-		})
-		.filter("username",function(){
-			return function(input){
-				if (input && input.name) return input.name
-				if (input && input.email) return input.email
-					return "John Doe"
-		}
-	}
-			)
 	</script>
 </head>
 <body ng-app="todo">
 	<div ng-controller="TodoController as todoCtrl">
-		<input type="text" ng-model="nombre ">
-		<br>
-		{{'Bonjour'|bang : nombre}}
-		<br>
-		<input type="text" ng-model="search ">
 		<ul>
-			<li ng-repeat="task in todoCtrl.tasks | orderBy:'description':todoCtrl.desc |filter:search">
+			<li ng-repeat="task in todoCtrl.tasks | orderBy:'description':todoCtrl.desc">
 				{{task.description }}
 			</li>
 		</ul>
 		<input type="text" ng-model="newtask">
 		<button ng-click="todoCtrl.addtask(newtask)">add</button>
 		<button ng-click="todoCtrl.tri()">change</button>
- <br>
- <br>
-
- {{todoCtrl.user1|username}}===Pauline<br>
- {{todoCtrl.user2|username}}===p.klein1@outlook.fr<br>
- {{todoCtrl.user3|username}}===John Doe<br>
 	</div>
 </body>
 </html>
