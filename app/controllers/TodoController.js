@@ -1,18 +1,24 @@
 angular.module("todo").controller("TodoController",function () {
 			var todoCtrl = this;
-			todoCtrl.tasks=[
-			{description :"un"},
-			{description :"deux"},
-			];
+			todoCtrl.games=[];
 
-			todoCtrl.addtask= function(desc){
-				todoCtrl.tasks.push({
-				description : desc})
-			};
-			todoCtrl.desc=true;
-			todoCtrl.tri = function(){
-				todoCtrl.desc =!todoCtrl.desc;
+			todoCtrl.ships=[
+			{value:1, label :"1 bâteau"},
+			{value:2, label :"2 bâteaux"},
+			{value:3, label :"3 bâteaux"},
+			{value:4, label :"4 bâteaux"},
+			{value:5, label :"5 bâteaux"}];
+
+			todoCtrl.game={ 
+				ships : todoCtrl.ships[0].value
 			}
-			this.user1 = {name:"Pauline",email:"p.klein1@outlook.fr"}
-		this.user2 = {email:"p.klein1@outlook.fr"}
-		})
+
+			this.Create= function(form){
+				if (form.$invalid)return
+					var clone = angular.copy(todoCtrl.game)
+					todoCtrl.games.push(clone)
+
+			}
+
+			})
+			
