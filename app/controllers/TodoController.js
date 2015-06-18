@@ -1,24 +1,53 @@
-angular.module("todo").controller("TodoController",function () {
+angular.module("todo").controller("TodoController",function (GameService,$location) {
+															/*$http*/
+/*$http({
+	method:"GET",
+	url :"http://192.168.229.21:3000/games"
+}).then(
+	function(result){
+		todoCtrl.games = result.data;
+	},
+	function(error){
+		console.log("error",error)
+	}
+)
+*/ 
+	function fetchGames(){
+	GameService.getAll()
+		.then(function (games){
+			todoCtrl.games = games
+		})
+	}
+
+		 fetchGames()
+
+
 			var todoCtrl = this;
-			todoCtrl.games=[];
+			todoCtrl.games = [];
+			
 
-			todoCtrl.ships=[
-			{value:1, label :"1 bâteau"},
-			{value:2, label :"2 bâteaux"},
-			{value:3, label :"3 bâteaux"},
-			{value:4, label :"4 bâteaux"},
-			{value:5, label :"5 bâteaux"}];
-
-			todoCtrl.game={ 
-				ships : todoCtrl.ships[0].value
-			}
+			todoCtrl.game = { 
+				fleetSize : GameService.fleetSizeValues[0].value
+							}
 
 			this.Create= function(form){
-				if (form.$invalid)return
+				if (form.$invalid) return
 					var clone = angular.copy(todoCtrl.game)
 					todoCtrl.games.push(clone)
+					GameService.save(clone)
+					.then(function(){
+						$location.path("/")
+						}
+						)
+
+
+					/*$http({
+						method:"POST",
+						url :"http://192.168.229.21:3000/games",
+						data : clone
+					})*/
 
 			}
-
 			})
+
 			
