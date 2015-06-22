@@ -1,0 +1,21 @@
+{
+  "name": "Module_AngularJS",
+  "version": "0.0.0",
+  "description": "test bower",
+  "main": "public/index.html",
+  "keywords": [
+    "test",
+    "bower"
+  ],
+  "authors": [
+    "Pauline Klein"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
