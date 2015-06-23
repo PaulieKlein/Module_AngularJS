@@ -39,11 +39,11 @@ module.exports=function(grunt){
 
 //			src:['public/**/*.js','public/**/*.css','public/**/*.html'],
 //			dest:'tmp/',
-/*			expand:true
-		}
-	}
-});
-grunt.loadNpmTasks('grunt-contrib-copy');*/
+//			expand:true
+//		}
+//	}
+//});
+//grunt.loadNpmTasks('grunt-contrib-copy');
 
 
 //Mode Object
@@ -62,29 +62,63 @@ grunt.loadNpmTasks('grunt-contrib-copy');*/
 
 // Créer un server
 grunt.initConfig({
-  connect: {
-    dev: {
-      options: {
-      	base :'public',
-      	hostname:'localhost',
-        port: 3000,
-        open :true,
-        livereload:true
-      }
-    }
-  },
-  watch : {
-  	dev : {
-  		files :['public/**/*.*'],
-  		options:{
-  			livereload :true
-  		},
-  	}
-  }
-});
 
+
+	clean: {
+		dev: ['tmp']
+	},
+	copy: {
+		dev :{
+			files:[{
+				expand:true,
+				src:['public/**/*.*'],
+				dest:'tmp/'
+
+			},
+			{
+				expand :true,
+				flatten :true,
+				src:['bower_components/**/angular.min.js',
+				'bower_components/**/bootstrap.css',
+				'bower_components/**/angular-route.min.js'],
+				dest:'tmp/public/lib'
+
+
+			}]
+		}
+	},
+	connect: {
+		dev: {
+			options: {
+				base :'tmp/public',
+				hostname:'localhost',
+				port: 3000,
+				open :true,
+				livereload:true
+			}
+		}
+	},
+	watch : {
+		dev : {
+			files :['public/**/*.*'],
+			tasks:['copy'],
+			options:{
+				livereload :true
+			},
+		}
+	},
+	karma : {
+		dev : {
+			configFile:'karma.conf.js'
+		},
+
+	}
+
+});
+grunt.loadNpmTasks('grunt-contrib-clean');
 grunt.loadNpmTasks('grunt-contrib-connect');
 grunt.loadNpmTasks('grunt-contrib-watch');
-
-grunt.registerTask('server',['connect','watch']);
+grunt.loadNpmTasks('grunt-contrib-copy');
+grunt.loadNpmTasks('grunt-karma');
+grunt.registerTask('server',['clean','copy','connect','watch','karma']);
 }

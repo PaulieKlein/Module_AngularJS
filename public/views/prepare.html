@@ -1,6 +1,6 @@
 
 <style type="text/css">
-table{
+.battlefield{
 	 border-collapse: collapse;
 	 width :50%;
 
@@ -8,7 +8,7 @@ table{
 
 }
 
-table,td,tr {
+.battlefield,.battlefield td, .battlefield tr {
 	border: 2px solid black;
 	text-align: center;
 	font-weight: bold;
@@ -16,8 +16,9 @@ table,td,tr {
 }
 
 </style>
+
 <h2> jeu n°{{preparectrl.game.id}}</h2>
-<p>Participant 1 : {{preparectrl.game.user1.pseudo}}</p> <p>Participant 2 : {{preparectrl.game.user2.pseudo}}</p>
+<p>Joueur 1 : {{preparectrl.game.user1.pseudo}}</p> <p>Joueur 2 : {{preparectrl.game.user2.pseudo}}</p>
 <p>nb bateaux à positionner : {{preparectrl.game.fleetSize}}</p>
 <table class="battlefield">
 	<tr ng-repeat="row in preparectrl.rows track by $index">
