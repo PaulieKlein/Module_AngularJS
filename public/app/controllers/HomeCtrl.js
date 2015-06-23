@@ -16,8 +16,6 @@ function fetchGames() {
     }
 
     homectrl.prepare = function(game){
-
-        console.log(game)
         $location.path("/prepare/" +game.id)
     }
 })

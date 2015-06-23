@@ -1,4 +1,4 @@
-angular.module("todo",["ngRoute"])	.config(function ($routeProvider){
+angular.module("todo",["ngRoute"/*,"ui.bootstrap"*/]).config(function ($routeProvider){
 		$routeProvider
 		.when("/",{
 			templateUrl :"views/home.html",

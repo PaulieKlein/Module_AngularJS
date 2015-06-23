@@ -3,7 +3,7 @@ angular.module("todo")
 		$routeProvider
 		.when("/",{
 			templateUrl :"views/home.html",
-			controller : "Ctrl"
+			controller : "Ctrl",
 			controllerAs : "Ctrl"
 		})
 

@@ -1,6 +1,7 @@
 angular.module("todo")
 	.factory("GameService", function($http){
 		return {
+			version:"1.0",
 			pseudo:"pauline",
 			getAll : function(){
 				return $http.get("http://localhost:3000/games")
